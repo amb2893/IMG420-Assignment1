@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://doka6nj1qy1tr"]
+
+[ext_resource type="Script" uid="uid://dd14lw66wbpxp" path="res://player.gd" id="1_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://b02ythts0w34o" path="res://gameAssets/spaceShips_001.png" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://bigt33260p6k6" path="res://laser.tscn" id="2_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://ctg54vsasdsm8" path="res://gameAssets/spaceShips_009.png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://b87q8cjcfl6s0" path="res://gameAssets/spaceShipsUp1.png" id="4_sweqy"]
+[ext_resource type="Texture2D" uid="uid://b64qbiejmj616" path="res://gameAssets/spaceShipsUp9.png" id="5_2hs0m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hqtel"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_sweqy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2hs0m")
+}],
+"loop": true,
+"name": &"fly_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_onrkg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_i3pqv")
+}],
+"loop": true,
+"name": &"fly_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sweqy"]
+radius = 50.0
+height = 100.0
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_i3pqv")
+LaserScene = ExtResource("2_2hs0m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(27, 20)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_hqtel")
+animation = &"fly_side"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(27, 21)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_sweqy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

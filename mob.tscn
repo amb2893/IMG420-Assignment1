@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://cd2ad3qvhf8ox"]
+
+[ext_resource type="Texture2D" uid="uid://by5oxvhchnqej" path="res://gameAssets/spaceStation_mob.png" id="1_nokgg"]
+[ext_resource type="Script" uid="uid://h7owvfga502h" path="res://mob.gd" id="1_ubaqv"]
+[ext_resource type="Texture2D" uid="uid://bu5ydlaa73ooo" path="res://gameAssets/spaceStation_mob2.png" id="2_ubaqv"]
+[ext_resource type="Texture2D" uid="uid://kkvjapyg1yms" path="res://gameAssets/spaceStation_small1.png" id="4_s5nov"]
+[ext_resource type="Texture2D" uid="uid://dxco1e2hmv1v0" path="res://gameAssets/spaceStation_small2.png" id="5_b3mxk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p11y5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nokgg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ubaqv")
+}],
+"loop": true,
+"name": &"float_big",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_s5nov")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_b3mxk")
+}],
+"loop": true,
+"name": &"float_small",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s5nov"]
+radius = 25.0191
+height = 102.013
+
+[node name="Mob" type="RigidBody2D" groups=["mobs"]]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_ubaqv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.500001, 1)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_p11y5")
+animation = &"float_small"
+frame = 1
+frame_progress = 0.256428
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.56196
+shape = SubResource("CapsuleShape2D_s5nov")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(2, 1)
