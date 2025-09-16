@@ -37,6 +37,6 @@ Your goal: survive as long as possible and rack up points while dodging and blas
 ---
 
 
-## 📚 Credits  
+## Credits  
 Developed as part of **IMG420 - Assignment 1**.  
 Built with the [Godot Engine](https://godotengine.org/).  
